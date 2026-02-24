@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "DigitalLegal": {
+    "digitallegal": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -22,7 +22,8 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/custom-theme.scss",
+              "src/styles.scss"
             ],
             "server": "src/main.server.ts",
             "outputMode": "server",
@@ -58,10 +59,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "DigitalLegal:build:production"
+              "buildTarget": "digitallegal:build:production"
             },
             "development": {
-              "buildTarget": "DigitalLegal:build:development"
+              "buildTarget": "digitallegal:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -80,7 +81,7 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ]
           }
         }
