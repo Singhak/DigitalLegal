@@ -1,0 +1,30 @@
+<aside class="sidebar-nav" [class.collapsed]="isCollapsed()">
+  <div class="sidebar-header">
+    <div class="logo-area" *ngIf="!isCollapsed()">
+      <div class="logo-circle">PL</div>
+      <span class="firm-name">PANWAR LAW</span>
+    </div>
+    <button class="toggle-btn" (click)="toggleSidebar()">
+      <mat-icon>{{ isCollapsed() ? 'menu' : 'menu_open' }}</mat-icon>
+    </button>
+  </div>
+
+  <nav class="menu-list">
+    @for (item of menuItems(); track item.label) {
+      <a [routerLink]="item.route" 
+         routerLinkActive="active-link" 
+         class="menu-item"
+         [title]="isCollapsed() ? item.label : ''">
+        <mat-icon>{{ item.icon }}</mat-icon>
+        <span class="label" *ngIf="!isCollapsed()">{{ item.label }}</span>
+      </a>
+    }
+  </nav>
+
+  <div class="sidebar-footer">
+    <button class="logout-btn">
+      <mat-icon>logout</mat-icon>
+      <span *ngIf="!isCollapsed()">Sign Out</span>
+    </button>
+  </div>
+</aside>

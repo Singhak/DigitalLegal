@@ -1,0 +1,107 @@
+:host {
+  height: 100%;
+}
+
+.sidebar-nav {
+  height: 100vh; /* Full Height */
+  width: 260px;
+  background: #0f172a;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-x: hidden;
+  white-space: nowrap;
+  position: relative;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+
+  &.collapsed {
+    width: 80px; /* Collapsed Width */
+    
+    .logo-area, .label {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .menu-item {
+      justify-content: center;
+      padding: 12px 0;
+      mat-icon { margin: 0; }
+    }
+    
+    .sidebar-header {
+       justify-content: center;
+       padding: 20px 0;
+    }
+  }
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px;
+  height: 80px;
+
+  .logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    .logo-circle { background: #2b559b; padding: 6px; border-radius: 6px; font-weight: bold; font-size: 0.8rem; }
+    .firm-name { font-weight: 700; letter-spacing: 0.5px; font-size: 0.9rem; }
+  }
+}
+
+.toggle-btn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  &:hover { color: white; }
+}
+
+.menu-list {
+  flex: 1;
+  padding: 10px;
+
+  .menu-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 15px;
+    color: #94a3b8;
+    text-decoration: none;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    transition: background 0.2s, color 0.2s;
+
+    mat-icon { font-size: 22px; width: 22px; height: 22px; }
+
+    &:hover, &.active-link {
+      background: rgba(43, 85, 155, 0.2);
+      color: white;
+      mat-icon { color: #3b82f6; }
+    }
+  }
+}
+
+.sidebar-footer {
+  padding: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+
+  .logout-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: transparent;
+    border: none;
+    color: #f87171;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 8px;
+    &:hover { background: rgba(248, 113, 113, 0.1); }
+  }
+}
