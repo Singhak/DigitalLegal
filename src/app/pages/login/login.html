@@ -1,0 +1,57 @@
+<div class="login-page-wrapper">
+  <div class="main-card">
+    
+    <div class="brand-section">
+      <div class="brand-content">
+        <div class="legal-icon-wrapper">
+          <img src="assets/legal-scale-glow.png" alt="LexFlow Logo" class="brand-logo">
+        </div>
+        <h1 class="brand-name">Digital Legal:</h1>
+        <h2 class="brand-tagline">Justice Digitized</h2>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h3 class="welcome-text">Welcome to LexFlow</h3>
+
+      <button class="google-btn" (click)="onGoogleLogin()">
+        <img src="https://developers.google.com/identity/images/g-logo.png" alt="G">
+        Continue with Google
+      </button>
+
+      <div class="divider"><span>or</span></div>
+
+      @if (loginMode === 'email') {
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+          <div class="input-container">
+            <input type="email" formControlName="email" placeholder="Work Email">
+          </div>
+          <div class="input-container password-input">
+            <input type="password" formControlName="password" placeholder="Password">
+          </div>
+          <button type="submit" class="primary-btn">Log In</button>
+        </form>
+        <p class="toggle-link" (click)="loginMode = 'otp'">Login with Phone OTP instead</p>
+      }
+
+      @if (loginMode === 'otp') {
+        <form [formGroup]="otpForm">
+          @if (!isOtpSent) {
+            <div class="input-container">
+              <input type="tel" formControlName="phone" placeholder="+91 99999 99999">
+            </div>
+            <button type="button" class="primary-btn" (click)="sendOtpCode()">Send OTP</button>
+          } @else {
+            <div class="input-container">
+              <input type="text" formControlName="code" placeholder="Enter 6-digit OTP">
+            </div>
+            <button type="button" class="primary-btn" (click)="verifyOtpCode()">Verify & Login</button>
+          }
+        </form>
+        <p class="toggle-link" (click)="loginMode = 'email'; isOtpSent = false">Back to Email Login</p>
+      }
+
+      <div id="recaptcha-container"></div>
+    </div>
+  </div>
+</div>
