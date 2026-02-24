@@ -1,0 +1,59 @@
+<div class="client-container">
+  <header class="dashboard-header">
+    <div class="welcome">
+      <h1>Welcome back, {{ clientName() }}</h1>
+      <p>Secure Portal for Panwar Law Attorneys LLP</p>
+    </div>
+    <div class="emergency-contact">
+      <span>Urgent? Call Office:</span>
+      <a href="tel:+91XXXXXXXXXX">+91 XXXXX XXXXX</a>
+    </div>
+  </header>
+
+  <div class="content-grid">
+    <section class="case-section">
+      <h3>Active Legal Matters</h3>
+      @for (case of activeCases(); track case.id) {
+        <div class="case-card">
+          <div class="case-info">
+            <span class="case-no">{{ case.caseNumber }}</span>
+            <span class="vs">vs</span>
+            <span class="party">{{ case.oppositeParty }}</span>
+          </div>
+          
+          <div class="hearing-alert">
+            <mat-icon>event</mat-icon>
+            <div class="date-details">
+              <label>Next Hearing</label>
+              <strong>{{ case.nextHearing | date:'fullDate' }}</strong>
+              <small>{{ case.forum }}</small>
+            </div>
+          </div>
+
+          <div class="tracker-mini">
+             <app-case-tracker></app-case-tracker>
+          </div>
+
+          <div class="actions">
+            <button class="outline-btn">View Orders</button>
+            <button class="primary-btn">Contact Counsel</button>
+          </div>
+        </div>
+      }
+    </section>
+
+    <aside class="doc-sidebar">
+      <h3>Shared Documents</h3>
+      <div class="doc-list">
+        <div class="doc-item">
+          <mat-icon>picture_as_pdf</mat-icon>
+          <span>Vakalatnama.pdf</span>
+        </div>
+        <div class="doc-item">
+          <mat-icon>picture_as_pdf</mat-icon>
+          <span>Interim_Order_Feb.pdf</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
