@@ -1,0 +1,61 @@
+/* Sidebar Styles */
+.sidebar-nav {
+  width: 250px;
+  background: #0f172a;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+
+  .logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 40px;
+    .logo-circle { background: #2b559b; padding: 8px; border-radius: 8px; font-weight: bold; }
+    .firm-name { font-weight: 700; letter-spacing: 1px; }
+  }
+
+  .menu-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px;
+    color: #94a3b8;
+    text-decoration: none;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    transition: 0.2s;
+    &:hover, &.active-link { background: #1e293b; color: white; }
+  }
+}
+
+/* Header Styles */
+.app-header {
+  height: 70px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  border-bottom: 1px solid #e2e8f0;
+
+  .search-container {
+    display: flex;
+    align-items: center;
+    background: #f1f5f9;
+    padding: 8px 15px;
+    border-radius: 8px;
+    width: 400px;
+    input { border: none; background: transparent; margin-left: 10px; width: 100%; outline: none; }
+  }
+
+  .profile-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    .user-name { display: block; font-weight: 600; color: #1e293b; font-size: 0.9rem; }
+    .user-role { font-size: 0.75rem; color: #64748b; }
+    .avatar { background: #2b559b; color: white; padding: 10px; border-radius: 50%; width: 40px; text-align: center; }
+  }
+}
