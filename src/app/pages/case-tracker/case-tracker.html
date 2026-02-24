@@ -1,0 +1,22 @@
+<div class="tracker-wrapper">
+  <div class="tracker-steps">
+    @for (stage of stages; track stage.key; let i = $index) {
+      <div class="step" [class]="stage.status">
+        <div class="indicator">
+          @if (stage.status === 'past') {
+            <mat-icon>check</mat-icon>
+          } @else {
+            {{ i + 1 }}
+          }
+        </div>
+        <div class="label-box">
+          <span class="name">{{ stage.label }}</span>
+          <span class="date">{{ stage.date || 'Pending' }}</span>
+        </div>
+        @if (i < stages.length - 1) {
+          <div class="line"></div>
+        }
+      </div>
+    }
+  </div>
+</div>
