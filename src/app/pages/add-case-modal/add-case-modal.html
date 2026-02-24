@@ -1,0 +1,85 @@
+<div class="modal-container">
+    <div class="modal-header">
+        <div class="header-text">
+            <h2>Register New Case</h2>
+            <p>Panwar Law Attorneys LLP | Case Management</p>
+        </div>
+
+        <button mat-icon-button class="close-modal-btn" (click)="onCancel()" aria-label="Close dialog">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+    <form [formGroup]="caseForm" (ngSubmit)="onSubmit()">
+        <div class="form-grid">
+            <div class="input-group full">
+                <label>Client Name</label>
+                <input type="text" formControlName="clientName" placeholder="Enter Client's Full Name">
+            </div>
+
+            <div class="input-group">
+                <label>Case Number</label>
+                <input type="text" formControlName="caseNumber" placeholder="e.g., W.P.(C) 123/2026">
+            </div>
+
+            <div class="input-group">
+                <label>CNR Number</label>
+                <input type="text" formControlName="cnrNumber" placeholder="16-digit CNR Number">
+            </div>
+
+            <div class="input-group">
+                <label>Court / Forum</label>
+                <select formControlName="forum">
+                    <option value="Delhi High Court">Delhi High Court</option>
+                    <option value="Saket District Court">Saket District Court</option>
+                    <option value="Tis Hazari Court">Tis Hazari Court</option>
+                    <option value="Patiala House Court">Patiala House Court</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Next Hearing</label>
+                <input type="date" formControlName="nextHearingDate">
+            </div>
+        </div>
+
+        <div class="modal-actions">
+            <button type="button" class="cancel-btn" (click)="onCancel()">Discard</button>
+            <button type="submit" class="save-btn" [disabled]="caseForm.invalid">Save to Database</button>
+        </div>
+    </form>
+
+    <div class="file-upload-section">
+        <label>Attach Case Documents (PDF)</label>
+        <div class="drop-zone" (click)="fileInput.click()" (dragover)="$event.preventDefault()"
+            (drop)="onFileDropped($event)">
+            <mat-icon>cloud_upload</mat-icon>
+            <p>Click or Drag PDF files here to attach to the brief</p>
+            <input type="file" #fileInput (change)="onFileSelected($event)" hidden multiple accept="application/pdf">
+        </div>
+
+        @if (selectedFiles.length > 0) {
+        <div class="file-list">
+            @for (file of selectedFiles; track file.name) {
+            <div class="file-item">
+                <mat-icon>picture_as_pdf</mat-icon>
+                <span class="file-name">{{ file.name }}</span>
+                <mat-icon class="remove-icon" (click)="removeFile(file)">cancel</mat-icon>
+            </div>
+            }
+        </div>
+        }
+    </div>
+
+    @if (isUploading()) {
+    <div class="upload-overlay">
+        <div class="progress-container">
+            <p>Syncing Briefs with Digital Legal Servers...</p>
+            <div class="progress-bar">
+                <div class="fill" [style.width.%]="uploadProgress()"></div>
+            </div>
+            <span>{{ uploadProgress() }}% Complete</span>
+        </div>
+    </div>
+    }
+</div>

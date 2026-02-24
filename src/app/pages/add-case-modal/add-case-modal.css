@@ -1,0 +1,133 @@
+.modal-container {
+  padding: 16px;
+  background: white;
+  border-radius: 8px;
+  
+  .modal-header {
+    margin-bottom: 16px;
+    h2 { font-size: 1.5rem; color: #0f172a; margin-bottom: 5px; }
+    p { color: #64748b; font-size: 0.85rem; }
+  }
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 30px;
+
+  .full { grid-column: span 2; }
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  label { font-size: 0.8rem; font-weight: 600; color: #475569; text-transform: uppercase; }
+  input, select {
+    padding: 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    &:focus { outline: none; border-color: #2b559b; box-shadow: 0 0 0 3px rgba(43, 85, 155, 0.1); }
+  }
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 20px;
+
+  .cancel-btn { background: transparent; color: #64748b; border: none; cursor: pointer; }
+  .save-btn { 
+    background: #2b559b; 
+    color: white; 
+    border: none; 
+    padding: 12px 25px; 
+    border-radius: 8px; 
+    font-weight: 600; 
+    cursor: pointer;
+    &:disabled { opacity: 0.5; }
+  }
+}
+
+.file-upload-section {
+  margin-top: 20px;
+  label { font-size: 0.8rem; font-weight: 600; color: #475569; text-transform: uppercase; }
+}
+
+.drop-zone {
+  border: 2px dashed #e2e8f0;
+  border-radius: 12px;
+  padding: 30px;
+  text-align: center;
+  background: #f8fafc;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 10px;
+
+  &:hover { border-color: #2b559b; background: #f1f5f9; }
+  mat-icon { font-size: 40px; width: 40px; height: 40px; color: #94a3b8; }
+  p { color: #64748b; font-size: 0.9rem; margin-top: 10px; }
+}
+
+.file-list {
+  margin-top: 15px;
+  .file-item {
+    display: flex;
+    align-items: center;
+    background: #e2e8f0;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-bottom: 5px;
+    gap: 10px;
+    font-size: 0.85rem;
+    .remove-icon { font-size: 18px; width: 18px; height: 18px; color: #ef4444; cursor: pointer; }
+  }
+}
+
+.modal-header {
+  position: relative; /* Required for absolute positioning of the button */
+  padding: 8px;
+  border-bottom: 1px solid #e2e8f0;
+  background: white;
+
+  .header-text {
+    padding-right: 40px; /* Prevent text from overlapping the X button */
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    color: #0f172a;
+    margin: 0;
+  }
+
+  p {
+    color: #64748b;
+    font-size: 0.85rem;
+    margin: 4px 0 0 0;
+  }
+}
+
+/* Close Button Styling */
+.close-modal-btn {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  color: #94a3b8;
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: #ef4444; /* Turns red on hover to indicate destructive/close action */
+    background-color: rgba(239, 68, 68, 0.05);
+  }
+
+  mat-icon {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+  }
+}
