@@ -1,0 +1,91 @@
+/* Import Bootstrap CSS */
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Target the directive-based buttons */
+.legal-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: #2b559b !important;
+  color: #ffffff !important;
+  border-radius: 8px !important;
+  padding: 12px 24px !important;
+  font-weight: 500;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 6px rgba(43, 85, 155, 0.2);
+  cursor: pointer;
+
+  &:hover {
+    background-color: #1e3a8a !important;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 15px rgba(43, 85, 155, 0.3);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  mat-icon {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Outline variant for 'Cancel' or 'Draft' buttons */
+.legal-btn-outline {
+  @extend .legal-btn-primary;
+  background-color: transparent !important;
+  color: #2b559b !important;
+  border: 1px solid #2b559b !important;
+  box-shadow: none;
+
+  &:hover {
+    background-color: rgba(43, 85, 155, 0.05) !important;
+  }
+}
+
+/* Global Toast Overrides */
+
+.legal-toast-success {
+  --mdc-snackbar-container-color: #2b559b !important; /* Your Firm's Blue */
+  --mdc-snackbar-supporting-text-color: #ffffff !important;
+  --mat-snack-bar-button-color: #ffffff !important;
+  
+  border-radius: 12px !important;
+  border-left: 6px solid #10b981 !important; /* Success green accent */
+  box-shadow: 0 10px 25px rgba(43, 85, 155, 0.25) !important;
+  
+  .mdc-snackbar__surface {
+    padding-left: 10px !important;
+  }
+}
+
+.legal-toast-error {
+  --mdc-snackbar-container-color: #ef4444 !important; /* Alert Red */
+  --mdc-snackbar-supporting-text-color: #ffffff !important;
+  --mat-snack-bar-button-color: #ffffff !important;
+  
+  border-radius: 12px !important;
+  box-shadow: 0 10px 25px rgba(239, 68, 68, 0.2) !important;
+}
+
+.legal-toast-info {
+  --mdc-snackbar-container-color: #0f172a !important; /* Slate Navy */
+  --mdc-snackbar-supporting-text-color: #ffffff !important;
+  --mat-snack-bar-button-color: #94a3b8 !important;
+  
+  border-radius: 12px !important;
+}
+
+/* Styling the 'DISMISS' action text */
+.mat-mdc-snack-bar-action {
+  font-weight: 700 !important;
+  letter-spacing: 0.5px !important;
+}
