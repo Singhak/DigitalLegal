@@ -10,10 +10,10 @@ export const routes: Routes = [
         component: LayoutComponent,
         children: [
             { path: 'client/dashboard', loadComponent: () => import('./pages/client-portal/client-dashboard/client-dashboard').then(m => m.ClientDashboard) },
-            { path: 'client/cases', loadComponent: () => import('./pages/client-portal/client-cases/client-cases').then(m => m.ClientCases) },
+            { path: 'client/cases', loadComponent: () => import('./pages/shared/cases/cases').then(m => m.SharedCasesComponent) },
             { path: 'client/invoices', loadComponent: () => import('./pages/client-portal/client-invoices/client-invoices').then(m => m.ClientInvoices) },
             { path: 'advocate/dashboard', loadComponent: () => import('./pages/advocate/advocate-dashboard/advocate-dashboard').then(m => m.AdvocateDashboard) }, // For you
-            { path: 'advocate/cases', loadComponent: () => import('./pages/advocate/advocate-cases/advocate-cases').then(m => m.AdvocateCases) },
+            { path: 'advocate/cases', loadComponent: () => import('./pages/shared/cases/cases').then(m => m.SharedCasesComponent) },
             { path: 'advocate/billing', loadComponent: () => import('./pages/advocate/advocate-billing/advocate-billing').then(m => m.AdvocateBilling) },
 
             // Add more internal routes here
