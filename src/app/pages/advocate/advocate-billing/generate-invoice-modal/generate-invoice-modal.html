@@ -1,0 +1,47 @@
+<h2 mat-dialog-title>Generate New Invoice</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="invoiceForm" class="invoice-form">
+    
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Client Name</mat-label>
+      <input matInput formControlName="clientName" placeholder="Enter client name">
+      <mat-error *ngIf="invoiceForm.get('clientName')?.hasError('required')">Client Name is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Legal Services / Description</mat-label>
+      <textarea matInput formControlName="description" placeholder="E.g., Legal Consultation, Filing of WP(C)"></textarea>
+      <mat-error *ngIf="invoiceForm.get('description')?.hasError('required')">Description is required</mat-error>
+    </mat-form-field>
+
+    <div class="row-fields">
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Invoice Date</mat-label>
+        <input matInput type="date" formControlName="date">
+        <mat-error *ngIf="invoiceForm.get('date')?.hasError('required')">Date is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Amount (₹)</mat-label>
+        <input matInput type="number" formControlName="amount" placeholder="0.00">
+        <mat-error *ngIf="invoiceForm.get('amount')?.hasError('required')">Amount is required</mat-error>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status">
+        <mat-option value="Paid">Paid</mat-option>
+        <mat-option value="Unpaid">Unpaid</mat-option>
+        <mat-option value="Overdue">Overdue</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-flat-button color="primary" [disabled]="invoiceForm.invalid" (click)="onSave()">Generate Invoice</button>
+</mat-dialog-actions>
