@@ -1,0 +1,78 @@
+<div class="billing-container">
+  
+  <!-- Standard View (Hidden during print) -->
+  <div class="no-print">
+    <div class="header-actions">
+      <h1>Billing & Invoices</h1>
+      <button mat-flat-button color="primary" (click)="openGenerateInvoiceModal()">
+        <mat-icon>add</mat-icon> Generate Invoice
+      </button>
+    </div>
+
+    <div class="table-container">
+      <table mat-table [dataSource]="invoices()" class="mat-elevation-z2">
+        
+        <ng-container matColumnDef="invoiceNumber">
+          <th mat-header-cell *matHeaderCellDef> Invoice No. </th>
+          <td mat-cell *matCellDef="let inv"> <strong>{{inv.invoiceNumber}}</strong> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="clientName">
+          <th mat-header-cell *matHeaderCellDef> Client </th>
+          <td mat-cell *matCellDef="let inv"> {{inv.clientName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef> Date </th>
+          <td mat-cell *matCellDef="let inv"> {{inv.date}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef> Amount </th>
+          <td mat-cell *matCellDef="let inv"> ₹{{inv.amount}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef> Status </th>
+          <td mat-cell *matCellDef="let inv">
+            <span class="status-badge" [ngClass]="inv.status.toLowerCase()">{{inv.status}}</span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let inv">
+            <button mat-icon-button color="primary" title="Print / Save PDF" (click)="printInvoice(inv)">
+              <mat-icon>print</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Printable Invoice Template (Visible ONLY during print) -->
+  <div class="printable-invoice" *ngIf="selectedInvoice() as invoice">
+    <div class="invoice-header">
+      <h2>INVOICE</h2>
+      <p><strong>Digital Legal Solutions</strong><br>Advocate Dashboard</p>
+    </div>
+    <div class="invoice-details">
+      <p><strong>Invoice No:</strong> {{invoice.invoiceNumber}}</p>
+      <p><strong>Date:</strong> {{invoice.date}}</p>
+      <p><strong>Billed To:</strong> {{invoice.clientName}}</p>
+    </div>
+    <table class="invoice-items">
+      <thead><tr><th>Description</th><th>Amount</th></tr></thead>
+      <tbody><tr><td>Legal Consultation & Services</td><td>₹{{invoice.amount}}</td></tr></tbody>
+      <tfoot><tr><th>Total Due</th><th>₹{{invoice.amount}}</th></tr></tfoot>
+    </table>
+    <div class="invoice-footer">
+      <p>Thank you for your business!</p>
+    </div>
+  </div>
+
+</div>
