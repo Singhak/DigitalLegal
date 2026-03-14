@@ -89,3 +89,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   font-weight: 700 !important;
   letter-spacing: 0.5px !important;
 }
+
+/* Centered Logo Helper */
+.logo-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
