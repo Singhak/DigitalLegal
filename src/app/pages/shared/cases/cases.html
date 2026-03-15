@@ -2,7 +2,7 @@
   <div class="header-actions">
     <div>
       <h1>My Cases</h1>
-      @if(!isClient()){
+      @if(isClient()){
       <p class="subtitle">Select a case below to view documents, dates, and status updates.</p>
       }
     </div>
@@ -12,16 +12,18 @@
     </button>
     }
   </div>
-
-  <div *ngIf="isLoading()" class="loading-container">
+  @if (isLoading()) {
+  <div class="loading-container">
     <mat-spinner diameter="40"></mat-spinner>
   </div>
-
-  <div *ngIf="errorMessage()" class="error-message">
+  }
+  @if (errorMessage()) {
+  <div class="error-message">
     {{ errorMessage() }}
   </div>
-
-  <div class="table-container" *ngIf="!isLoading()">
+  }
+  @if (!isLoading()) {
+  <div class="table-container">
     <table mat-table [dataSource]="cases()" class="mat-elevation-z2">
 
       <!-- Case Number Column -->
@@ -54,14 +56,17 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef class="actions-header"> Actions </th>
         <td mat-cell *matCellDef="let c" class="actions-cell">
-          <ng-container *ngIf="isClient()">
+          @if (isClient()) {
+          <ng-container>
             <button mat-stroked-button color="primary"
               (click)="viewCaseDetails(c.id || c._id || 'demo'); $event.stopPropagation()">View Details</button>
           </ng-container>
-          <ng-container *ngIf="!isClient()">
+          }@else {
+          <ng-container>
             <button mat-icon-button color="primary" title="View Details"><mat-icon>visibility</mat-icon></button>
             <button mat-icon-button color="accent" title="Edit Case"><mat-icon>edit</mat-icon></button>
           </ng-container>
+          }
         </td>
       </ng-container>
 
@@ -69,11 +74,16 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns();" class="case-row" [class.clickable]="isClient()"
         (click)="isClient() ? viewCaseDetails(row.id || row._id || 'demo') : null"></tr>
     </table>
-
-    <div *ngIf="cases().length === 0" class="no-cases-msg">
+    @if (!cases().length) {
+    <div class="no-cases-msg">
       <mat-icon>folder_open</mat-icon>
-      <p *ngIf="isClient()">You have no active cases at the moment.</p>
-      <p *ngIf="!isClient()">No cases found. Click "New Case" to add one.</p>
+      @if(isClient()){
+      <p>You have no active cases at the moment.</p>
+      } @else {
+      <p>No cases found. Click "New Case" to add one.</p>
+      }
     </div>
+    }
   </div>
+  }
 </div>

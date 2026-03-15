@@ -1,5 +1,5 @@
 <div class="billing-container">
-  
+
   <!-- Standard View (Hidden during print) -->
   <div class="no-print">
     <div class="header-actions">
@@ -11,7 +11,7 @@
 
     <div class="table-container">
       <table mat-table [dataSource]="invoices()" class="mat-elevation-z2">
-        
+
         <ng-container matColumnDef="invoiceNumber">
           <th mat-header-cell *matHeaderCellDef> Invoice No. </th>
           <td mat-cell *matCellDef="let inv"> <strong>{{inv.invoiceNumber}}</strong> </td>
@@ -55,7 +55,8 @@
   </div>
 
   <!-- Printable Invoice Template (Visible ONLY during print) -->
-  <div class="printable-invoice" *ngIf="selectedInvoice() as invoice">
+  @if(selectedInvoice(); as invoice){
+  <div class="printable-invoice">
     <div class="invoice-header">
       <h2>INVOICE</h2>
       <p><strong>Digital Legal Solutions</strong><br>Advocate Dashboard</p>
@@ -66,13 +67,28 @@
       <p><strong>Billed To:</strong> {{invoice.clientName}}</p>
     </div>
     <table class="invoice-items">
-      <thead><tr><th>Description</th><th>Amount</th></tr></thead>
-      <tbody><tr><td>Legal Consultation & Services</td><td>₹{{invoice.amount}}</td></tr></tbody>
-      <tfoot><tr><th>Total Due</th><th>₹{{invoice.amount}}</th></tr></tfoot>
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Legal Consultation & Services</td>
+          <td>₹{{invoice.amount}}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th>Total Due</th>
+          <th>₹{{invoice.amount}}</th>
+        </tr>
+      </tfoot>
     </table>
     <div class="invoice-footer">
       <p>Thank you for your business!</p>
     </div>
   </div>
-
+  }
 </div>
